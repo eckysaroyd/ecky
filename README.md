@@ -1,1 +1,2 @@
-here is my sample code store you can learn from us by visit or clone it
+#ECKY REPOSITORY
+In this place is where we can see our code for our app
