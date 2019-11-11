@@ -1,45 +1,63 @@
-<!--PEN CODE-->
-<div id="contactForm" class="contactForm">
-  <div id="formHeader" class="formHeader">
-    <h1 id="message">Contact Me</h1>
-  </div>
-  <div id="formBody" class="formBody">
-    <form action="" method="POST" name="contactForm">
-      <div class="inputContainer">
-        <label for="userName">
-          <i class="fa fa-lg fa-fw fa-user"></i>
-        </label>
-        <input name="name" id="userName" type="text" placeholder="John Smith" />
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link rel="stylesheet" type="text/css" href="style.css" />
+    <script src="myscripts.js"></script>
+    <title>Document</title>
+  </head>
+  <body>
+    <!--PEN CODE-->
+    <div id="contactForm" class="contactForm">
+      <div id="formHeader" class="formHeader">
+        <h1 id="message">Contact Me</h1>
       </div>
-      <div class="inputContainer">
-        <label for="userEmail">
-          <i class="fa fa-lg fa-fw fa-envelope"></i>
-        </label>
-        <input
-          name="email"
-          id="userEmail"
-          type="email"
-          placeholder="jsmith@domain.com"
-        />
+      <div id="formBody" class="formBody">
+        <form action="" method="POST" name="contactForm">
+          <div class="inputContainer">
+            <label for="userName">
+              <i class="fa fa-lg fa-fw fa-user"></i>
+            </label>
+            <input
+              name="name"
+              id="userName"
+              type="text"
+              placeholder="John Smith"
+            />
+          </div>
+          <div class="inputContainer">
+            <label for="userEmail">
+              <i class="fa fa-lg fa-fw fa-envelope"></i>
+            </label>
+            <input
+              name="email"
+              id="userEmail"
+              type="email"
+              placeholder="jsmith@domain.com"
+            />
+          </div>
+          <div class="inputContainer">
+            <textarea
+              name="feedback"
+              id="userMessage"
+              rows="10"
+              placeholder="Enter your message"
+            ></textarea>
+          </div>
+          <input id="submitBtn" class="submitBtn" type="submit" value="Send" />
+        </form>
       </div>
-      <div class="inputContainer">
-        <textarea
-          name="feedback"
-          id="userMessage"
-          rows="10"
-          placeholder="Enter your message"
-        ></textarea>
-      </div>
-      <input id="submitBtn" class="submitBtn" type="submit" value="Send" />
-    </form>
-  </div>
-</div>
-<center>
-  <p>
-    <em
-      >NOTE: This form is for presentation only. Any form data entered is not
-      submitted</em
-    >
-  </p>
-</center>
-<!--END PEN CODE-->
+    </div>
+    <center>
+      <p>
+        <em
+          >NOTE: This form is for presentation only. Any form data entered is
+          not submitted</em
+        >
+      </p>
+    </center>
+    <!--END PEN CODE-->
+  </body>
+</html>
