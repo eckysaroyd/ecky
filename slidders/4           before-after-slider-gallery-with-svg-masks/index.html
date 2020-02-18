@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html >
+<head>
+  <meta charset="UTF-8">
+  <title>Before & After Slider Gallery With SVG Masks</title>
+  
+  
+  <link rel='stylesheet prefetch' href='https://fonts.googleapis.com/css?family=Roboto:400,700&amp;#39;'>
+
+      <link rel="stylesheet" href="css/style.css">
+
+  
+</head>
+
+<body>
+  <svg id="gallery" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1100 800">
+  <defs>
+    <mask id="masterMask">
+      <rect x="50" y="100" width="1000" height="600" fill="#fff" />
+      <rect x="50" y="600" width="1000" height="200" fill="#fff" rx="15" ry="15" />
+    </mask>
+    <mask id="slideMask">
+      <rect id="theSquare" x="-950" y="100" width="1000" height="700" fill="#fff" />
+    </mask>
+    <mask id="captionMask">
+      <rect x="50"  y="0" width="1000" height="100" fill="#fff"/>
+    </mask>
+    <mask id="draggerMask">
+      <circle cx="50" cy="450" r="30" fill="#fff"/>
+      <circle cx="1050" cy="450" r="30" fill="#fff"/>
+      <rect x="50" y="0" width="1000" height="800" fill="#fff" rx="18" ry="18" />
+    </mask>
+  </defs>
+  <title>Before and After Gallery</title>
+  <g mask="url(#masterMask)">
+    <g class="allPics">
+      <image xlink:href="https://s3-us-west-2.amazonaws.com/s.cdpn.io/314556/before00.jpg" x="50" y="100" width="1000" height="700" />
+      <image xlink:href="https://s3-us-west-2.amazonaws.com/s.cdpn.io/314556/before01.jpg" x="50" y="800" width="1000" height="700" />
+      <image xlink:href="https://s3-us-west-2.amazonaws.com/s.cdpn.io/314556/before02.jpg" x="50" y="1500" width="1000" height="700" />
+    </g>
+    <g mask="url(#slideMask)">
+      <g class="allPics">
+        <image xlink:href="https://s3-us-west-2.amazonaws.com/s.cdpn.io/314556/after00.jpg" x="50" y="100" width="1000" height="700" />
+        <image xlink:href="https://s3-us-west-2.amazonaws.com/s.cdpn.io/314556/after01.jpg" x="50" y="800" width="1000" height="700" />
+        <image xlink:href="https://s3-us-west-2.amazonaws.com/s.cdpn.io/314556/after02.jpg" x="50" y="1500" width="1000" height="700" />
+      </g>
+    </g>
+  </g>
+  <g mask="url(#captionMask)">
+    <rect x="50"  y="50" width="1000" height="50" fill="#68B3AF"/>
+    <rect x="50"  y="0" width="1000" height="100" rx="15" ry="15" fill="#68B3AF"/>
+    <g class="allCaptions" fill="white">
+      <g class="captions">
+        <text transform="translate(80 67.05)" font-size="55" >Kitchen Remodel</text>
+        <text transform="translate(561 40.33)" font-size="28" >Contractor: XYZ Kitchen Updates
+          <tspan x="0" y="33.6" xml:space="preserve">Budget: $25,000</tspan>
+          <tspan x="230.88" y="33.6">Time: 8 weeks</tspan>
+        </text>
+      </g>
+      <g transform="translate(0 100)" class="captions">
+        <text transform="translate(80 67.05)" font-size="55" >Basement Bath</text>
+        <text transform="translate(561 40.33)" font-size="28" >Contractor: The Bath Dudes
+          <tspan x="0" y="33.6" xml:space="preserve">Budget: $11,000</tspan>
+          <tspan x="230.88" y="33.6">Time: 4 weeks</tspan>
+        </text>
+      </g>
+      <g transform="translate(0 200)" class="captions" >
+        <text transform="translate(70 67.05)" font-size="55" >Hang your clothes</text>
+        <text transform="translate(561 40.33)" font-size="28" >Why? Because your mom said so.
+          <tspan x="0" y="33.6" xml:space="preserve">Budget: $0</tspan>
+          <tspan x="180.88" y="33.6">Time: Immediately!</tspan>
+        </text>
+      </g>
+    </g>
+  </g>
+  <rect x="52" y="2" width="996" height="796" fill="none" stroke-width="4" stroke="#fff" rx="15" ry="15" />
+  <g mask="url(#draggerMask)">
+    <g id="dragger">
+      <line id="divider" x1="50" y1="100" x2="50" y2="800" fill="none" stroke="#fff" stroke-width="2" stroke-miterlimit="10"/>
+      <circle id="draggerBase" cx="50" cy="450" r="30" fill="#68B3AF"/>
+      <circle id="outline" cx="50" cy="450" r="26" fill="none" stroke="#fff" stroke-miterlimit="10" stroke-width="2"/>
+      <polygon id="leftTriangle" points="67.21 449.62 60.11 453.73 53 457.83 53 449.62 53 441.42 60.11 445.52 67.21 449.62" fill="#fff"/>
+      <polygon id="rightTriangle" points="32.79 449.62 39.89 445.52 47 441.42 47 449.62 47 457.83 39.89 453.73 32.79 449.62" fill="#fff"/>
+    </g>
+  </g>
+</svg>
+<div class="controls">
+  <div class="newPic">Kitchen Remodel</div>
+  <div class="newPic">Basement Bathroom</div>
+  <div class="newPic">Pick Up Your Clothes</div>
+</div>
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js'></script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/gsap/1.19.1/TweenMax.min.js'></script>
+<script src='https://s3-us-west-2.amazonaws.com/s.cdpn.io/16327/ThrowPropsPlugin.min.js'></script>
+<script src='http://cdnjs.cloudflare.com/ajax/libs/gsap/1.19.1/utils/Draggable.min.js'></script>
+
+    <script src="js/index.js"></script>
+
+</body>
+</html>

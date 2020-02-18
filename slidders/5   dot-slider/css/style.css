@@ -1,0 +1,52 @@
+body {
+  background-color: #ececec;
+  -webkit-transition: background-color 0.3s ease;
+  transition: background-color 0.3s ease;
+}
+.emoji {
+  position: absolute;
+  margin-left: 20px;
+  top: 45%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  font-size: 250px;
+  opacity: .2;
+}
+.container {
+  position: absolute;
+  top: 45%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+}
+ul {
+  list-style-type: none;
+}
+ul .is_active {
+  padding: 10px 15px;
+  cursor: default;
+}
+ul .is_active:hover {
+  opacity: 1;
+}
+ul li {
+  color: #222;
+  position: relative;
+  display: inline-block;
+  background-color: #fff;
+  border-radius: 100px;
+  vertical-align: middle;
+  min-width: 12px;
+  min-height: 12px;
+  padding: 0px;
+  -webkit-transition: all .3s ease;
+  transition: all .3s ease;
+  margin-right: 5px;
+  box-shadow: 0 1px 2px 0px rgba(0, 0, 0, 0.2);
+  cursor: hand;
+  cursor: pointer;
+}
+ul li:hover {
+  opacity: 0.6;
+}

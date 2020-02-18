@@ -1,0 +1,154 @@
+Unreleased
+------------------
+Added a new 3D transition called `explode`
+
+
+1.4.4 (2012/03/14)
+------------------
+Fixed problems with Firefox11
+
+Updated `cols` param to `columns` in `blocks` transition
+
+Made `bars3d` work properly in Firefox
+
+
+1.4.3 (2012/01/10)
+------------------
+Fixed a few syntax issues with JSLint
+
+
+1.4.2 (2012/01/10)
+------------------
+Fixed a bug with the jQuery Widget that prevented `isPlaying` from working.
+
+Added `getImages` function to the jQuery Widget.
+
+Fixed feature detect code for Firefox 10.
+
+Made 3D transitions work with Firefox 10.
+
+Reverted to setInterval for play loop better timing.
+
+
+1.4.1 (2011/10/12)
+------------------
+Added a check for focus which fixes a bug on FF where autoplay would break when a tab had lost focus.
+
+Added a timeout before each css change in a transition to be sure that the end event listener has been registered.
+
+1.4 (2011/10/07)
+------------------
+Added support for `img` tags nested inside `a`. These images inherit the link from their parent and are clickable.
+
+Flux will now run when jQuery is in compatibility mode.
+
+Added basic inbuilt next/prev buttons. Pass in `controls: true` to the constructor.
+
+Flux no longer silently fails on unsupported browsers, it builds the slider but just switches from one image to the other.
+
+Refactored setup code so that it works on IE.
+
+Added a lock to ensure that the `finish()` function of `flux.transition` only ever fires once per transition.
+
+Added support for `swipeLeft` & `swipeRight` when used with Zepto.js.
+
+Forced hardware acceleration on the `slide` transition so that it works better on iOS.
+
+The `next()` & `prev()` functions now pass on the `left`/`right` param for supported transitions.
+
+Created an abstract transition called `transition_grid` which can be extended to produce grid based transitions.
+
+Refactored the following transitions to use `transition_grid`: `bars`, `bars3d`, `blinds`, `blinds3d`, `blocks`, `tiles3d`, `zip`. This reduces the size required to define each transition and ensures row/column rendering is done with the same code.
+
+Added `supportsCSSProperty` function to perform feature checking on the browser.
+
+Each transition can now check for browser compatibility at load time using `compatibilityCheck`.
+
+Added the `swipe`, `dissolve` and `blocks2` transitions.
+
+Added support for captions. Caption text is read from the `title` attribute of the `img` elements. Captions need to be enabled by passing  `captions: true` into the constructor.
+
+Ensured that images still switch if no valid transitions are available.
+
+Autoplay now uses `setTimeout` rather than `setInterval` so that the delay between transitions is started only when a transition has completed. This prevents the case where a transition might take longer to execute than the provided delay time.
+
+
+1.3.2 (2011/07/24)
+------------------
+Added the 'turn' (3D) & 'slide' (2D) transitions.
+
+Can now specify a size for the slider canvas on init, images crop for the top-left edge [EXPERIMENTAL]
+
+Updated coding style of flux.slider to make use of .appendTo to reduce code size (Zepto added this in 0.6 so now safe to use for jQuery/Zepto compatibility).
+
+Added the current image to the event data object associated with the 'fluxTransitionEnd' event.
+
+Can now pass in a callback function 'onTransitionEnd' to receive notifications of when transitions have completed (Alternative to listening for 'fluxTransitionEnd' events).
+
+1.3.1 (2011/06/10)
+------------------
+The .css3() function now adds the non vendor prefixed version as well. This fixed a bug where 'concentric' & 'warp' where not round in Firefox 4.
+
+1.3 (2011/06/09)
+------------------
+Made it easier to handle 3d transitions by moving the overflow logic into flux.transition.js
+
+Fixed a bug where 3d transitions could leave the viewport in an overflow: visible state.
+
+Ensured event object is sent to callback for .transitionEnd() helper function
+
+Updated zepto.js to v0.6
+
+Added a short 5ms delay before transition execution as Zepto sometimes failed to catch the transitionEnd() with some 3D transitions
+
+Added 'tiles3d' & 'blinds3d' transitions. Thanks to Altryne (twitter.com/altryne) for porting his 'tiles3d' code to Flux!
+
+Improved performance by using Document Fragments to reduce DOM reflows.
+
+Added support for Modernizr feature detection with a fallback to custom detection code.
+
+3D transformations are removed from the list of loaded transitions when the browser does not support 3D.
+
+Added a jQuery widget for better integration with jQuery.
+
+1.2.1 (2011/05/17)
+------------------
+Fixed a z-index issue with 'bars3d' under Chrome. This also reduced flicker during rendering on iOS.
+
+1.2 (2011/05/16)
+------------------
+Added feature detection so any browser that supports CSS3 transitions will now work, jQuery may need to be used instead of Zepto for non Webkit based browsers.
+
+Added helper function for detecting the Transition end .transition()
+
+Added helper function for adding required vendor prefixes to CSS3 .css3()
+
+Modified the base transition object so that it now maintains a reference to the slider object to make it easier to access both current and next images. Previously only the current image was stored which limited what transitions could be created.
+
+Added support for gracefully degrading when a transition requires 3d but the browser doesn't support it
+
+Added 'bars3d' & 'cube' 3D transitions
+
+Fixed a bug where Chrome would report 3d transformation support when it didn't. Now uses a media query to confirm support under webkit. Similar to how Modernizr works
+
+Enabled transition specific parameters to be overloaded from the main constructor
+
+Improved the 'concentric' transition so that enough circles are always created to cover the required space
+
+A specific transition can now be requested instead of one being picked at random, applies to .next(), .prev(), .showImage() and .transition() of flux.slider object
+
+Added isPlayer() function to determine if the slider is currently auto-progressing
+
+Added the event 'fluxTransitionEnd' which now fires whenever a transition has completed
+
+Fixed a chaining bug with .transitionEnd() helper function
+
+1.1
+------------------
+Added support for Zepto.js as a drop in replacement for jQuery
+
+Added detection of 3d CSS effects to ensure hardware acceleration is used where possible
+
+1.0
+------------------
+Initial release

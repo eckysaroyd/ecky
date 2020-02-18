@@ -1,0 +1,219 @@
+@import "bourbon";
+
+// colors
+
+$color-1: #445b7c; // blue dark
+$color-2: #dc717d; // salmon
+$color-3: #ffffff; // white
+
+// fonts 
+
+$primary-font: 'Open Sans', sans-serif;
+
+// bounce-in duration
+
+$bounce-in-duration: .7s;
+
+// rem fallback - credits: http://zerosixthree.se/
+
+@function calculateRem($size) {
+  $remSize: $size / 16px;
+  @return $remSize * 1rem;
+}
+
+@mixin font-size($size) {
+  font-size: $size;
+  font-size: calculateRem($size);
+}
+
+// antialiasing mode font rendering
+
+@mixin font-smoothing {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+// breakpoints
+   
+$S:     320px;   
+$M:     768px;     
+$L:     1170px;     
+
+// media queries
+
+@mixin MQ($canvas) {
+  @if $canvas == S {
+   @media only screen and (min-width: $S) { @content; } 
+  }
+  @else if $canvas == M {
+   @media only screen and (min-width: $M) { @content; } 
+  }
+  @else if $canvas == L {
+   @media only screen and (min-width: $L) { @content; } 
+  }
+}
+
+/* -------------------------------- 
+
+Primary style
+
+-------------------------------- */
+
+*, *:after, *:before {
+	@include box-sizing(border-box);
+}
+
+body {
+	font: {
+		size: 100%;
+		family: $primary-font; 
+	}
+	color: $color-1;
+	background-color: $color-1;
+}
+
+a {
+	color: $color-2;
+	text-decoration: none;
+}
+
+img {
+	max-width: 100%;
+}
+
+/* -------------------------------- 
+
+Main components 
+
+-------------------------------- */
+
+header {
+	position: relative;
+	height: 160px;
+	line-height: 160px;
+	text-align: center;
+
+	h1 {
+		@include font-size(22px);
+		color: $color-3;
+		font-weight: 300;
+		@include font-smoothing;
+	}
+
+	@include MQ(M) {
+		height: 240px;
+		line-height: 240px;
+
+		h1 {
+			@include font-size(32px);
+		}
+	}
+}
+
+.cd-image-container {
+	position: relative;
+	width: 90%;
+	max-width: $M; 
+	margin: 2em auto;
+
+	img {
+		display: block;
+	}
+  
+  @include MQ(M) {
+    margin: 4em auto;
+  }
+}
+
+.cd-image-label {
+	position: absolute;
+	bottom: 0;
+	right: 0;
+	color: $color-3;
+	padding: 1em;
+	@include font-smoothing;
+	opacity: 0;
+	@include transform(translateY(20px));
+	-webkit-transition: -webkit-transform .3s $bounce-in-duration, opacity .3s $bounce-in-duration;
+	-moz-transition: -moz-transform .3s $bounce-in-duration, opacity .3s $bounce-in-duration;
+	transition: transform .3s $bounce-in-duration, opacity .3s $bounce-in-duration;
+
+	&.is-hidden {
+		visibility: hidden;
+	}
+
+	.is-visible & {
+		opacity: 1;
+		@include transform(translateY(0));
+	}
+}
+
+.cd-resize-img {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 0;
+	height: 100%;
+	overflow: hidden;
+	background: url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/148866/img-modified.jpg') no-repeat left top;
+	background-size: auto 100%;
+	/* Force Hardware Acceleration in WebKit */
+	@include transform(translateZ(0));
+	-webkit-backface-visibility: hidden;
+	backface-visibility: hidden;
+
+	.cd-image-label {
+		right: auto;
+		left: 0;
+	}
+
+	.is-visible & {
+		width: 50%;
+		/* bounce in animation of the modified image */
+		@include animation(cd-bounce-in $bounce-in-duration);
+	}
+}
+
+@include keyframes(cd-bounce-in) {
+	0% {
+		width: 0;
+	}
+
+	60% {
+		width: 55%;
+	}
+
+	100% {
+		width: 50%;
+	}
+}
+
+.cd-handle {
+	position: absolute;
+	height: 44px;
+	width: 44px;
+	/* center the element */
+	left: 50%;
+	top: 50%;
+	margin-left: -22px;
+	margin-top: -22px;
+	border-radius: 50%;
+	background: $color-2 url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/148866/cd-arrows.svg') no-repeat center center;
+	cursor: move;
+	box-shadow: 0 0 0 6px rgba(#000, .2), 0 0 10px rgba(#000, .6), inset 0 1px 0 rgba(#fff, .3);
+	opacity: 0;
+	@include transform(translate3d(0,0,0) scale(0));
+
+	&.draggable {
+		/* change background color when element is active */
+		background-color: $color-1;
+	}
+
+	.is-visible & {
+		opacity: 1;
+		@include transform(translate3d(0,0,0) scale(1));
+		-webkit-transition: -webkit-transform .3s $bounce-in-duration, opacity 0s $bounce-in-duration;
+		-moz-transition: -moz-transform .3s $bounce-in-duration, opacity 0s $bounce-in-duration;
+		transition: transform .3s $bounce-in-duration, opacity 0s $bounce-in-duration;
+	}
+}
